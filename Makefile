@@ -257,6 +257,7 @@ ninfod:
 
 # -------------------------------------
 # modules / check-kernel are only for ancient kernels; obsolete
+#检查内核
 check-kernel:
 ifeq ($(KERNEL_INCLUDE),)
 	@echo "Please, set correct KERNEL_INCLUDE"; false
@@ -271,12 +272,15 @@ modules: check-kernel
 
 # -------------------------------------
 man:
-	$(MAKE) -C doc man
+       #生成man的帮助文档
+	$(MAKE) -C doc man    
 
 html:
+	#生成html的帮助文档
 	$(MAKE) -C doc html
 
 clean:
+	#删除所有的.o文件
 	@rm -f *.o $(TARGETS)
 	@$(MAKE) -C Modules clean
 	@$(MAKE) -C doc clean
@@ -285,6 +289,7 @@ clean:
 			$(MAKE) -C ninfod clean; \
 		fi
 
+#清除ninfod目录下所有生成的文件。
 distclean: clean
 	@set -e; \
 		if [ -f ninfod/Makefile ]; then \
